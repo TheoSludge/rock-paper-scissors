@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background-color: #E7DFD9;
+}
+
+h1, h2, p, a, span, div{
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+}
+
+/* --- header --- */
+
+header {
+    background: #678D58;
+    padding: 15px;
+}
+
+header > h1 {
+    color: whitesmoke;
+    text-align: center;
+    font-size: xx-large;
+}
+
+/* --- footer --- */
+
+footer {
+    background: #537147;
+    padding: 15px;
+}
+
+footer p {
+    color: #C2C2C2;
+    text-align: left;
+}
+
+footer a {
+    color: #C2C2C2;
+    text-align: left;
+    text-decoration: none;
+    font-size: large;
+    transition: all .2s ease;
+}
+
+footer > a:hover {
+    color: whitesmoke;
+}
+
+.wrapper {
+    margin: 0 300px;
+}
+
+.socials-grid {
+    margin: 10px 0;
+}
+
+/* --- main --- */
+
+.scores {
+    position: relative;
+    margin: 15px auto;
+    border-top: solid black;
+    border-bottom: solid black;
+    width: 200px;
+    font-size: 45px;
+    padding: 10px;
+    text-align: center;
+}
+
+.result {
+    font-size: large;
+}
+
+.result > p,
+.result > h2{
+    text-align: center;
+}
+
+.choices {
+    margin: 10px 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.choice{
+    margin: 0 10px;
+    padding: 10px;
+    display: inline-block;
+    transition: all .2s ease;
+}
+
+.choice:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.label {
+    background-color: #D8CAC0;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+#comp-choice {
+    animation: spin 7s infinite linear;
+}
+
+#user-badge {
+    position: absolute;
+    top: 22px;
+    left: -40px;
+}
+
+#comp-badge {
+    position: absolute;
+    top: 22px;
+    right: -55px;
+}
+
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
