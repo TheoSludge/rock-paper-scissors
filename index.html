@@ -5,6 +5,9 @@
         <meta name = "author" content = "Amar Cajdric" />
         <meta name = "description" content = "A simple rock paper scissors game." />
         <link rel = "stylesheet" href="styles/style.css" />
+        <link rel = "stylesheet" href="styles/popup.css" />
+        <link rel = "stylesheet" href="styles/header.css" />
+        <link rel = "stylesheet" href="styles/footer.css" />
         <script src = "scripts/main.js" defer></script>
         <title>Rock, paper, scissors</title>
     </head>
@@ -12,6 +15,11 @@
     <body>
         <header>
             <h1>Rock Paper Scissors</h1>
+            <ul class = "modes">
+                <li><a class = "current" id = "infinite" href = "#">Infinite</a></li>
+                <li><a href = "#" id = "three">Best of three</a></li>
+                <li><a href = "#" id = "five">Best of five</a></li>
+            </ul>
         </header>
 
         <main>
@@ -46,6 +54,14 @@
                 </div>
             </div>  
         </main>
+
+        <div class = "end-game-screen">
+            <div class = "message">
+                <strong>You won!</strong>
+                <p>Congratulations</p>
+                <button class = "play-again">Play again</button>
+            </div>
+        </div>
 
         <footer>
             <div class = "wrapper">

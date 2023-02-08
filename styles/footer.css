@@ -1,0 +1,22 @@
+footer {
+    background: #678D58;
+    padding: 15px 0;
+    z-index: 2;
+}
+
+footer p {
+    color: #C2C2C2;
+    text-align: left;
+}
+
+.wrapper {
+    margin: 0 300px;
+}
+
+.socials-grid {
+    margin: 10px 0;
+}
+
+.socials-grid > a {
+    margin: 0 3px;
+}

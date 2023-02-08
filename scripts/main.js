@@ -1,46 +1,33 @@
 let userScore = 0;
 let compScore = 0;
+let activeMode = 0;
 
-const compChoice_img =  document.querySelector('#comp-choice > img');
-const userScore_span = document.querySelector('#user-score');
-const compScore_span = document.querySelector('#comp-score');
+// Div
 const scoreboard_div = document.querySelector('.scores');
-const prompt_p =document.querySelector('.result > p')
-const result_h2 = document.querySelector('.result > h2');
+const endGameScreen_div = document.querySelector('.end-game-screen');
 const rock_div = document.querySelector('#rock');
 const paper_div = document.querySelector('#paper');
 const scissors_div = document.querySelector('#scissors');
 
-function random() {
-    const moves = ['r', 'p', 's'];
-    const num = Math.floor(Math.random() * 3);
-    return moves[num];
-}
+// Span
+const userScore_span = document.querySelector('#user-score');
+const compScore_span = document.querySelector('#comp-score');
 
-function convertChoice(choice) {
-    if (choice === 'r') return 'Rock';
-    if (choice === 'p') return 'Paper';
-    return 'Scissors';
-}
+// Link
+const infinite_a = document.querySelector('#infinite');
+const bestThree_a = document.querySelector('#three');
+const bestFive_a = document.querySelector('#five');
 
-function victory(u, c) {
-    userScore++;
-    userScore_span.innerHTML = userScore;
-    prompt_p.textContent = `${convertChoice(u)} beats ${convertChoice(c)}!`;
-    result_h2.textContent = 'You win';
-}
+// Misc.
+const prompt_p =document.querySelector('.result > p');
+const result_h2 = document.querySelector('.result > h2');
+const compChoice_img =  document.querySelector('#comp-choice > img');
+const playAgain_button = document.querySelector('.play-again');
+const endOutcome_strong = document.querySelector('.message > strong');
+const endMessage_p = document.querySelector('.message > p');
 
-function loss(u, c) {
-    compScore++;
-    compScore_span.innerHTML = compScore;
-    prompt_p.textContent = `${convertChoice(c)} beats ${convertChoice(u)}!`;
-    result_h2.textContent = 'You lose';
-}
 
-function draw(u, c) {
-    prompt_p.textContent = `You both chose ${convertChoice(c)}!`;
-    result_h2.textContent = 'It\'s a draw';
-}
+// Game logic
 
 function startGame(userSelection) {
     const compSelection = random();
@@ -65,14 +52,125 @@ function startGame(userSelection) {
     }
 }
 
+// Outcomes
+
+function victory(u, c) {
+    userScore++;
+    userScore_span.innerHTML = userScore;
+    prompt_p.textContent = `${convertChoice(u)} beats ${convertChoice(c)}!`;
+    result_h2.textContent = 'You win';
+}
+
+function loss(u, c) {
+    compScore++;
+    compScore_span.innerHTML = compScore;
+    prompt_p.textContent = `${convertChoice(c)} beats ${convertChoice(u)}!`;
+    result_h2.textContent = 'You lose';
+}
+
+function draw(u, c) {
+    prompt_p.textContent = `You both chose ${convertChoice(c)}!`;
+    result_h2.textContent = 'It\'s a draw';
+}
+
+// Helper functions
+
+function random() {
+    const moves = ['r', 'p', 's'];
+    const num = Math.floor(Math.random() * 3);
+    return moves[num];
+}
+
+function convertChoice(choice) {
+    if (choice === 'r') return 'Rock';
+    if (choice === 'p') return 'Paper';
+    return 'Scissors';
+}
+
+function resetScore() {
+    userScore = 0;
+    compScore = 0;
+    userScore_span.innerHTML = userScore;
+    compScore_span.innerHTML = compScore;
+}
+
+function checkScore() {
+    switch (activeMode) {
+        case 1:
+            if (userScore > 1) {
+                endOutcome_strong.textContent = 'You won';
+                endMessage_p.textContent = 'Congratulations!';
+                endGameScreen_div.classList.toggle('visible');
+            } else if (compScore > 1) {
+                endOutcome_strong.textContent = 'You lost';
+                endMessage_p.textContent = 'Better luck next time';
+                endGameScreen_div.classList.toggle('visible');
+            }
+        case 2:
+            if (userScore > 2) {
+                endOutcome_strong.textContent = 'You won';
+                endMessage_p.textContent = 'Congratulations!';
+                endGameScreen_div.classList.toggle('visible');
+            } else if (compScore > 2) {
+                endOutcome_strong.textContent = 'You lost';
+                endMessage_p.textContent = 'Better luck next time';
+                endGameScreen_div.classList.toggle('visible');
+            }
+    }
+}
+
 rock_div.addEventListener('click', function() {
     startGame('r');
+    checkScore();
 })
 
 paper_div.addEventListener('click', function() {
     startGame('p');
+    checkScore();
 })
 
 scissors_div.addEventListener('click', function() {
     startGame('s');
+    checkScore();
+})
+
+playAgain_button.addEventListener('click', function() {
+    resetScore();
+    endGameScreen_div.classList.toggle('visible');
+})
+
+// Mode selection
+// Note: I'm pretty sure this can be done more efficiently, but I have yet to find a way
+
+infinite_a.addEventListener('click', function() {
+    infinite_a.classList.add('current');
+    bestThree_a.classList.remove('current');
+    bestFive_a.classList.remove('current');
+
+    endGameScreen_div.classList.remove('visible');
+
+    activeMode = 0;
+    resetScore();
+})
+
+bestThree_a.addEventListener('click', function() {
+    infinite_a.classList.remove('current');
+    bestThree_a.classList.add('current');
+    bestFive_a.classList.remove('current');
+
+    endGameScreen_div.classList.remove('visible');
+
+    activeMode = 1;
+    resetScore();
+})
+
+bestFive_a.addEventListener('click', function() {
+    infinite_a.classList.remove('current');
+    bestThree_a.classList.remove('current');
+    bestFive_a.classList.add('current');
+
+    endGameScreen_div.classList.remove('visible');
+
+    activeMode = 2;
+    resetScore();
 })

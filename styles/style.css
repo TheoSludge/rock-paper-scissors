@@ -15,32 +15,7 @@ h1, h2, p, a, span, div{
     font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
 }
 
-/* --- header --- */
-
-header {
-    background: #678D58;
-    padding: 15px;
-}
-
-header > h1 {
-    color: whitesmoke;
-    text-align: center;
-    font-size: xx-large;
-}
-
-/* --- footer --- */
-
-footer {
-    background: #537147;
-    padding: 15px;
-}
-
-footer p {
-    color: #C2C2C2;
-    text-align: left;
-}
-
-footer a {
+a {
     color: #C2C2C2;
     text-align: left;
     text-decoration: none;
@@ -48,23 +23,9 @@ footer a {
     transition: all .2s ease;
 }
 
-footer  a:hover {
+a:hover {
     color: whitesmoke;
 }
-
-.wrapper {
-    margin: 0 300px;
-}
-
-.socials-grid {
-    margin: 10px 0;
-}
-
-.socials-grid > a {
-    margin: 0 3px;
-}
-
-/* --- main --- */
 
 .scores {
     position: relative;
@@ -87,7 +48,7 @@ footer  a:hover {
 }
 
 .choices {
-    margin: 10px 0;
+    margin: 15px 0;
     text-align: center;
     overflow: hidden;
 }
@@ -112,6 +73,10 @@ footer  a:hover {
 
 #comp-choice {
     animation: spin 7s infinite linear;
+}
+
+#comp-choice img {
+    max-width: 100%;
 }
 
 #user-badge {
