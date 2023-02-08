@@ -19,10 +19,12 @@ const bestThree_a = document.querySelector('#three');
 const bestFive_a = document.querySelector('#five');
 
 // Misc.
-const prompt_p =document.querySelector('.result > p')
+const prompt_p =document.querySelector('.result > p');
 const result_h2 = document.querySelector('.result > h2');
 const compChoice_img =  document.querySelector('#comp-choice > img');
 const playAgain_button = document.querySelector('.play-again');
+const endOutcome_strong = document.querySelector('.message > strong');
+const endMessage_p = document.querySelector('.message > p');
 
 
 // Game logic
@@ -95,11 +97,23 @@ function resetScore() {
 function checkScore() {
     switch (activeMode) {
         case 1:
-            if (userScore > 1 || compScore > 1) {
+            if (userScore > 1) {
+                endOutcome_strong.textContent = 'You won';
+                endMessage_p.textContent = 'Congratulations!';
+                endGameScreen_div.classList.toggle('visible');
+            } else if (compScore > 1) {
+                endOutcome_strong.textContent = 'You lost';
+                endMessage_p.textContent = 'Better luck next time';
                 endGameScreen_div.classList.toggle('visible');
             }
         case 2:
-            if (userScore > 2 || compScore > 2) {
+            if (userScore > 2) {
+                endOutcome_strong.textContent = 'You won';
+                endMessage_p.textContent = 'Congratulations!';
+                endGameScreen_div.classList.toggle('visible');
+            } else if (compScore > 2) {
+                endOutcome_strong.textContent = 'You lost';
+                endMessage_p.textContent = 'Better luck next time';
                 endGameScreen_div.classList.toggle('visible');
             }
     }
